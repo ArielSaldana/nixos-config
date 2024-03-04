@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./nvidia.nix
       ./home-manager.nix
     ];
 
@@ -50,12 +51,31 @@
     xkbVariant = "";
   };
 
+  #programs.zsh.enable = true;
+
+  programs.zsh = {
+    enable = true;
+    shellAliases = {
+      ll = "ls -la";
+      update = "sudo nixos-rebuild switch";
+    };
+  };
+  programs.zsh.ohMyZsh = {
+    enable = true;
+    theme = "robbyrussell";
+    plugins = [
+      "sudo"
+      "git"
+    ];
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.ariel = {
     isNormalUser = true;
     description = "ariel";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [];
+    shell = pkgs.zsh;
   };
 
   # Allow unfree packages
@@ -100,6 +120,7 @@
   environment.pathsToLink = [ "libexec" ];
   services.xserver = {
     enable = true;
+    dpi = 96;
     desktopManager = {
       xterm.enable = false;
     };
