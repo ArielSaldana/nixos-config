@@ -3,6 +3,7 @@
 {
   imports = [
     ./configs/i3.nix
+    ./configs/kitty.nix
   ];
 
   programs = {
