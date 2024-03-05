@@ -20,7 +20,6 @@ in
     home.stateVersion = "23.11";
 
     home.packages = with pkgs; [
-      #vim      
       neovim
       neofetch
       firefox
@@ -31,7 +30,6 @@ in
       rustup
       gcc
       libgcc
-
       xclip
       feh
     ];

@@ -14,5 +14,4 @@
   };
 
   xsession.enable = true;
-  
 }
