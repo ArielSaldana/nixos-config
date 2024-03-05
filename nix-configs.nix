@@ -3,6 +3,7 @@
 {
   imports = [
     ./configs/i3.nix
+    ./configs/picom.nix
     ./configs/kitty.nix
   ];
 

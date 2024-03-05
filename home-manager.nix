@@ -32,6 +32,8 @@ in
       libgcc
       xclip
       feh
+      nix-prefetch
+      nix-prefetch-github
     ];
 
     home.file = {
