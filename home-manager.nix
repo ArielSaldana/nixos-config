@@ -37,7 +37,8 @@ in
       rofi
       flameshot
       ranger
-
+      chromium
+      appimage-run
       unstable.jetbrains-toolbox
     ];
 

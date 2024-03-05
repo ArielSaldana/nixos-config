@@ -49,8 +49,11 @@
   programs.zsh = {
     enable = true;
     shellAliases = {
-      ll = "ls -la";
+      ll="ls --color --group-directories-first -AFohg";
+      ls="ls --color --group-directories-first -F";
+      la="ls --color --group-directories-first -AF";
       update = "sudo nixos-rebuild switch";
+      svim = "sudo nvim";
     };
   };
 
@@ -68,7 +71,7 @@
   users.users.ariel = {
     isNormalUser = true;
     description = "ariel";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "plugdev" ];
     packages = with pkgs; [];
     shell = pkgs.zsh;
   };
