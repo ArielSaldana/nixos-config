@@ -30,8 +30,13 @@ in {
       };
 
       startup = [
-        #{
-        #}
+        {
+	  # Set our background on startup
+	  #command = "exec --no-startup-id ${pkgs.feh}/bin/feh --bg-scale ~/.background-image";
+	  command = "feh --bg-scale ~/.background-image";
+	  always = true;
+	  notification = false;
+        }
       ];
     };
 
