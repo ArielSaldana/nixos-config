@@ -2,7 +2,7 @@
 
 let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
-
+  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
 in
 {
   imports = [
@@ -37,6 +37,8 @@ in
       rofi
       flameshot
       ranger
+
+      unstable.jetbrains-toolbox
     ];
 
     home.file = {
