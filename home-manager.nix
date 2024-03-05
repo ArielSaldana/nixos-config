@@ -9,13 +9,6 @@ in
     (import "${home-manager}/nixos")
   ];
 
-  #services.xserver = {
-  #  enable = true;
-  #  displayManager.sessionCommands = ''
-  #    ${pkgs.feh}/bin/feh --bg-fill /home/ariel/.background-image
-  #  '';
-  #};
-
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;
@@ -42,9 +35,7 @@ in
       nix-prefetch
       nix-prefetch-github
       rofi
-      #rofi-screenshot
       flameshot
-      #thunar
       ranger
     ];
 

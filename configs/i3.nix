@@ -13,7 +13,7 @@ in {
       bars = [
         {
           position = "top";
-          statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3status-rust/config-top.toml";
+          statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs /etc/nixos/dotfiles/i3status-rust/config.toml";
         }
       ];
 
@@ -27,12 +27,13 @@ in {
       keybindings = lib.mkOptionDefault {
         "${modifier}+b" = "exec ${pkgs.firefox}/bin/firefox";
         "${modifier}+Return" = "exec ${pkgs.kitty}/bin/kitty";
+	"${modifier}+Shift+4" = "exec ${pkgs.flameshot}/bin/flameshot gui";
+	"${modifier}+Shift+5" = "exec ${pkgs.flameshot}/bin/flameshot screen -p ~/Screenshots";
       };
 
       startup = [
         {
-	  # Set our background on startup
-	  #command = "exec --no-startup-id ${pkgs.feh}/bin/feh --bg-scale ~/.background-image";
+	  # Set our background on startup, required feh to be installed..
 	  command = "feh --bg-scale ~/.background-image";
 	  always = true;
 	  notification = false;
