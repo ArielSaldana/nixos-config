@@ -40,9 +40,9 @@ in
       flameshot
       ranger
       chromium
-      appimage-run
       curl
       openssl
+      lxappearance
 
       unstable.jetbrains-toolbox
       unstable.vcpkg
@@ -57,5 +57,17 @@ in
     };
 
     imports = [ ./nix-configs.nix ];
+  };
+
+  environment.etc = {
+    "xdg/gtk-2.0/gtkrc".text = "gtk-error-bell=0";
+    "xdg/gtk-3.0/settings.ini".text = ''
+      [Settings]
+      gtk-error-bell=false
+    '';
+    "xdg/gtk-4.0/settings.ini".text = ''
+      [Settings]
+      gtk-error-bell=false
+    '';    
   };
 }
