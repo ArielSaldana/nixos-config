@@ -21,6 +21,7 @@ in
 
     home.packages = with pkgs; [
       zip
+      unzip
       neovim
       neofetch
       firefox
@@ -40,12 +41,15 @@ in
       ranger
       chromium
       appimage-run
+      curl
+      openssl
 
       unstable.jetbrains-toolbox
       unstable.vcpkg
       unstable.cmake
       unstable.gnumake
       unstable.clang-tools_17
+      
     ];
 
     home.file = {
