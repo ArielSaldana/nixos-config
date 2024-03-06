@@ -25,7 +25,7 @@ in {
       };
 
       keybindings = lib.mkOptionDefault {
-        "${modifier}+b" = "exec ${pkgs.firefox}/bin/firefox";
+        "${modifier}+b" = "exec ${pkgs.chromium}/bin/chromium";
         "${modifier}+Return" = "exec ${pkgs.kitty}/bin/kitty";
 	"${modifier}+Shift+4" = "exec ${pkgs.flameshot}/bin/flameshot gui";
 	"${modifier}+Shift+5" = "exec ${pkgs.flameshot}/bin/flameshot screen -p ~/Screenshots";
