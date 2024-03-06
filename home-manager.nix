@@ -20,6 +20,7 @@ in
     home.stateVersion = "23.11";
 
     home.packages = with pkgs; [
+      zip
       neovim
       neofetch
       firefox
@@ -39,7 +40,12 @@ in
       ranger
       chromium
       appimage-run
+
       unstable.jetbrains-toolbox
+      unstable.vcpkg
+      unstable.cmake
+      unstable.gnumake
+      unstable.clang-tools_17
     ];
 
     home.file = {
