@@ -13,7 +13,7 @@ in {
       bars = [
         {
           position = "top";
-          statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs /etc/nixos/dotfiles/i3status-rust/config.toml";
+          statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs /etc/nixos/modules/home-manager/dotfiles/i3status-rust/config.toml";
         }
       ];
 

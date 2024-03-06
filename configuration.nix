@@ -9,7 +9,8 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./nvidia.nix
-      ./home-manager.nix
+      ./modules/home-manager/main.nix
+      ./modules/i3/main.nix
     ];
 
   # Bootloader.
