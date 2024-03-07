@@ -1,19 +1,40 @@
 { pkgs, lib, ... }:
 
 let
-  mod = "Mod4";
+  modifier = "Mod4";
+  background = "#282a36";
 
 in {
   xsession.windowManager.i3 = {
     enable = true;
-    package = pkgs.i3-gaps;
+    #package = pkgs.i3-gaps;
 
-    config = rec {
-      modifier = "Mod4";
+    config = {
+      modifier = modifier;
+      
+      fonts = {
+        names = ["Iosevka"];
+	style = "Light";
+	size = 8.0;
+      };
+
       bars = [
         {
           position = "top";
-          statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs /etc/nixos/modules/home-manager/dotfiles/i3status-rust/config.toml";
+          statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3status-rust/config-top.toml";
+	  fonts = {
+            names = [
+	      "Iosevka"
+	    ];
+	    style = "Regular";
+	    size = 12.0;
+	  };
+	  colors = {
+            background = background;
+            separator = "#aaaaaa";
+          };
+	  #settings = {
+          #};
         }
       ];
 
@@ -51,11 +72,60 @@ in {
     enable = true;
     bars = {
       top = {
+        icons = "awesome6";
+	theme = "semi-native";
+	settings = {
+	  theme.overrides = {
+            idle_fg = "#FFFFFF";
+	    idle_bg = background;
+	    #idle_bg = "#06060f";
+	    #info_fg = "#89b4fa";
+            #info_bg = "#00000000";
+            #good_fg = "#a6e3a1";
+            #good_bg = "#00000000";
+            #warning_fg = "#fab387";
+            #warning_bg = "#00000000";
+            #critical_fg = "#f38ba8";
+            #critical_bg = "#00000000";
+            #separator = "\ue0b2";
+	    #separator = "\uf0f3";
+	    #separator = "\U+2190";
+            separator_bg = background;
+            separator_fg = "auto";
+	    separator = " ";
+	  };
+	};
         blocks = [
+	  #{
+	  #  block = "cpu";
+	  #  info_cpu = 20;
+	  #  warning_cpu = 50;
+	  #  critical_cpu = 90;
+	  #}
+	  {
+	    block = "disk_space";
+	    path = "/";
+	    info_type = "available";
+	    alert_unit = "GB";
+	    interval = 20;
+	    warning = 20;
+	    alert = 10;
+	    format = " $icon Root: $available.eng(w:2) ";
+	  }
+	  {
+	    block = "memory";
+	    format = " $icon $mem_total_used_percents.eng(w:2) ";
+	    format_alt = " $icon_swap $swap_used_percents.eng(w:2) ";
+	  }
+	  {
+	    block = "sound";
+	    format = " $icon $volume ";
+	  }
           {
             block = "time";
-            interval = 60;
-            format = "%a %d/%m %k:%M %p";
+            interval = 5;
+            #format = "%a %d %d/%m %k:%M %p";
+	    format = " $icon $timestamp.datetime(f:'%a %m-%d-%y %r') ";
           }
         ];
       };

@@ -49,6 +49,8 @@ in
       unstable.cmake
       unstable.gnumake
       unstable.clang-tools_17
+
+      unstable.nodejs
       
     ];
 

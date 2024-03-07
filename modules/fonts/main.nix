@@ -1,6 +1,11 @@
 { config, lib, pkgs, ... }:
 
 {
+  imports = [
+    ./iosevka.nix
+  ];
+
+
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk
@@ -11,6 +16,16 @@
     mplus-outline-fonts.githubRelease
     dina-font
     proggyfonts
-    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "Iosevka" ]; })
+    powerline-fonts
+    (nerdfonts.override 
+      { 
+        fonts = [ 
+          "FiraCode"
+	  "DroidSansMono"
+	  "Iosevka"
+	  "IosevkaTerm" 
+        ]; 
+      }
+    )
   ];
 }
