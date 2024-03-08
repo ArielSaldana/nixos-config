@@ -40,9 +40,10 @@ in
       flameshot
       ranger
       chromium
-      curl
       openssl
       lxappearance
+
+      pkg-config
 
       unstable.jetbrains-toolbox
       unstable.vcpkg
@@ -51,6 +52,8 @@ in
       unstable.clang-tools_17
 
       unstable.nodejs
+
+      python38
       
     ];
 

@@ -12,6 +12,7 @@
       ./modules/fonts/main.nix
       ./modules/home-manager/main.nix
       ./modules/i3/main.nix
+      ./modules/curl/main.nix
     ];
 
   # Bootloader.
@@ -87,6 +88,7 @@
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
   #  home-manager
+    #ca-certs
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
