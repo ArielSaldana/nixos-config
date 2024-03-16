@@ -42,6 +42,7 @@ in
       chromium
       openssl
       lxappearance
+      htop
 
       pkg-config
 
