@@ -3,6 +3,7 @@
 let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
   unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
+  #cuda = pkgs.cudaPackages.cudatoolkit;
 in
 {
   imports = [
@@ -55,8 +56,37 @@ in
       unstable.nodejs
 
       python38
+
+      #gnupg
+      #autoconf
+      #procps
+      #util-linux
+      #m4
+      #gperf
+      #cudatoolkit
+      #linuxPackages.nvidia_x11
+      #libGLU libGL
+      #cudaPackages.cudatoolkit
+      #cudaPackages.cudnn
+      #cudaPackages.cuda_cudart
+      #unstable.cudaPackages.cuda_nvcc
       
     ];
+
+
+    #home.sessionVariables = {
+    #  CUDA_PATH = "${cuda}";
+    #  CUDA_ROOT = "${cuda}";
+    #  CUDA_HOME = "${cuda}";
+    #  PATH = lib.makeBinPath [
+    #    cuda
+    #    pkgs.git
+    #    pkgs.neovim
+    #    unstable.jetbrains-toolbox
+    #  ] + ":$PATH";
+    #  LD_LIBRARY_PATH = "${cuda}/lib64:${pkgs.linuxPackages.nvidia_x11}/lib:$LD_LIBRARY_PATH";
+    #};
+
 
     home.file = {
       ".config/nvim".source = dotfiles/nvim;
