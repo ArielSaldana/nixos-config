@@ -3,6 +3,7 @@
 let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
   unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
+  
 in
 {
   imports = [
@@ -54,8 +55,7 @@ in
 
       unstable.nodejs
 
-      python38
-      
+      python38      
     ];
 
     home.file = {
