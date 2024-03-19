@@ -55,22 +55,7 @@ in
 
       unstable.nodejs
 
-      python38
-
-      #gnupg
-      #autoconf
-      #procps
-      #util-linux
-      #m4
-      #gperf
-      #cudatoolkit
-      #linuxPackages.nvidia_x11
-      #libGLU libGL
-      #cudaPackages.cudatoolkit
-      #cudaPackages.cudnn
-      #cudaPackages.cuda_cudart
-      #unstable.cudaPackages.cuda_nvcc
-      
+      python38      
     ];
 
     home.file = {
