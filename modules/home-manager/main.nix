@@ -73,21 +73,6 @@ in
       
     ];
 
-
-    #home.sessionVariables = {
-    #  CUDA_PATH = "${cuda}";
-    #  CUDA_ROOT = "${cuda}";
-    #  CUDA_HOME = "${cuda}";
-    #  PATH = lib.makeBinPath [
-    #    cuda
-    #    pkgs.git
-    #    pkgs.neovim
-    #    unstable.jetbrains-toolbox
-    #  ] + ":$PATH";
-    #  LD_LIBRARY_PATH = "${cuda}/lib64:${pkgs.linuxPackages.nvidia_x11}/lib:$LD_LIBRARY_PATH";
-    #};
-
-
     home.file = {
       ".config/nvim".source = dotfiles/nvim;
     };
