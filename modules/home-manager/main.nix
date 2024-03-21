@@ -44,6 +44,8 @@ in
       openssl
       lxappearance
       htop
+      btop
+      tmux
 
       pkg-config
 
