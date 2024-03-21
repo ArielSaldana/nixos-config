@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./modules/nvidia/main.nix
+      ./modules/docker/main.nix
       ./modules/fonts/main.nix
       ./modules/home-manager/main.nix
       ./modules/i3/main.nix
