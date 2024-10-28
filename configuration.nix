@@ -107,12 +107,15 @@
     enable = true;
 
     settings = {
-      PasswordAuthentication = true;
-    }; 
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+    };
+
+
   };
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 22 ];
+  #networking.firewall.allowedTCPPorts = [ 22 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
@@ -167,5 +170,35 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
+
+  security.pam.services.login = {
+  limits = [
+    {
+      domain = "*";
+      type = "hard";
+      item = "nofile";
+      value = "65535";
+    }
+    {
+      domain = "*";
+      type = "soft";
+      item = "nofile";
+      value = "65535";
+    }
+  ];
+};
+  
+  boot.kernel.sysctl = {
+  "fs.file-max" = 2097152;
+  "net.ipv4.ip_local_port_range" = "1024 65535";
+  "net.core.somaxconn" = 4096;
+  "net.ipv4.tcp_max_syn_backlog" = 4096;
+  "net.ipv4.tcp_tw_reuse" = 1;
+  "net.ipv4.tcp_tw_recycle" = 1;
+  "net.ipv4.tcp_fin_timeout" = 15;
+};
+  networking.firewall.enable = true;
+  networking.firewall.allowedTCPPorts = [ 22 9002 9042 27017 28017];
+
 }
 

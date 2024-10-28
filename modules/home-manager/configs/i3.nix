@@ -50,9 +50,15 @@ in {
         "${modifier}+Return" = "exec ${pkgs.kitty}/bin/kitty";
 	"${modifier}+Shift+4" = "exec ${pkgs.flameshot}/bin/flameshot gui";
 	"${modifier}+Shift+5" = "exec ${pkgs.flameshot}/bin/flameshot screen -p ~/Screenshots";
+	"${modifier}+q" = "kill";
       };
 
       startup = [
+        {
+	  command = "exec i3-msg workspace 1";
+	  always = true;
+	  notification = false;
+	}
         {
 	  # Set our background on startup, required feh to be installed..
 	  command = "feh --bg-scale ~/.background-image";

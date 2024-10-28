@@ -1,7 +1,7 @@
 { config, lib, pkgs, ...}:
 
 let
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz";
   unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
   
 in
@@ -18,7 +18,19 @@ in
   home-manager.users.ariel = {
     home.username = "ariel";
     home.homeDirectory = "/home/ariel";
-    home.stateVersion = "23.11";
+    home.stateVersion = "24.05";
+
+    programs.ssh = {
+      enable = true;
+      extraConfig = ''
+        PubkeyAuthentication yes
+      '';
+    };
+
+#    home.file.".ssh/authorized_keys".text = ''
+#        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGSCn0+Tmia4dHCEOFxxmoI3owHtKqlKSQ2hYNMKn4dv ariel"
+#	"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPlq+lB2uniY1hKBUQ8olz093FZoA2dkcdpo2G7OEKTE arielsaldana@Ariels-MB"
+    #'';
 
     home.packages = with pkgs; [
       zip
@@ -57,7 +69,15 @@ in
 
       unstable.nodejs
 
-      python38      
+      python39
+      python311Packages.pip
+      wget
+
+      stdenv.cc.cc.lib
+      conda
+
+      #1password
+      _1password-gui
     ];
 
     home.file = {
