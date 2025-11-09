@@ -1,7 +1,8 @@
 { config, lib, pkgs, ...}:
 
 let
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz";
+  #home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
+  home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz;
   unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
   
 in
@@ -18,7 +19,7 @@ in
   home-manager.users.ariel = {
     home.username = "ariel";
     home.homeDirectory = "/home/ariel";
-    home.stateVersion = "24.05";
+    home.stateVersion = "25.05";
 
     programs.ssh = {
       enable = true;
@@ -37,11 +38,11 @@ in
       unzip
       neovim
       neofetch
-      firefox
-      kitty
+#      firefox
+#      kitty
       git
       gh
-      sapling
+#      sapling
       rustup
       gcc
       libgcc
@@ -49,9 +50,9 @@ in
       feh
       nix-prefetch
       nix-prefetch-github
-      rofi
-      flameshot
-      ranger
+#      rofi
+#      flameshot
+#      ranger
       chromium
       openssl
       lxappearance
@@ -65,37 +66,39 @@ in
       unstable.vcpkg
       unstable.cmake
       unstable.gnumake
-      unstable.clang-tools_17
+      unstable.clang-tools
 
       unstable.nodejs
 
-      python39
-      python311Packages.pip
+      python314
+      python313Packages.pip
       wget
 
       stdenv.cc.cc.lib
-      conda
+#      conda
 
       #1password
       _1password-gui
+
+      #zed-editor
     ];
 
-    home.file = {
-      ".config/nvim".source = dotfiles/nvim;
-    };
+#    home.file = {
+#      ".config/nvim".source = dotfiles/nvim;
+#    };
 
-    imports = [ ./configs/main.nix ];
+#    imports = [ ./configs/main.nix ];
   };
 
-  environment.etc = {
-    "xdg/gtk-2.0/gtkrc".text = "gtk-error-bell=0";
-    "xdg/gtk-3.0/settings.ini".text = ''
-      [Settings]
-      gtk-error-bell=false
-    '';
-    "xdg/gtk-4.0/settings.ini".text = ''
-      [Settings]
-      gtk-error-bell=false
-    '';    
-  };
+#  environment.etc = {
+#    "xdg/gtk-2.0/gtkrc".text = "gtk-error-bell=0";
+#    "xdg/gtk-3.0/settings.ini".text = ''
+#      [Settings]
+#      gtk-error-bell=false
+#    '';
+#    "xdg/gtk-4.0/settings.ini".text = ''
+#      [Settings]
+#      gtk-error-bell=false
+#    '';    
+#  };
 }

@@ -2,9 +2,10 @@
 
 {
   imports = [
-    ./i3.nix
-    ./picom.nix
-    ./kitty.nix
+#    ./i3.nix
+#    ./picom.nix
+#    ./kitty.nix
+#    ./zed.nix
   ];
 
   programs = {

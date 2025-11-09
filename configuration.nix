@@ -10,15 +10,31 @@
       ./hardware-configuration.nix
       ./modules/nvidia/main.nix
       ./modules/docker/main.nix
-      ./modules/fonts/main.nix
+#      ./modules/fonts/main.nix
       ./modules/home-manager/main.nix
-      ./modules/i3/main.nix
-      ./modules/curl/main.nix
+#      ./modules/i3/main.nix
+#      ./modules/curl/main.nix
     ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelModules = [ "kvm-amd" ]; #virtualization
+  virtualisation.libvirtd = {
+  enable = true;
+  qemu = {
+    package = pkgs.qemu_kvm;
+    runAsRoot = true;
+    swtpm.enable = true;
+    ovmf = {
+      enable = true;
+      packages = [(pkgs.OVMF.override {
+        secureBoot = true;
+        tpmSupport = true;
+      }).fd];
+    };
+  };
+};
 
   boot.initrd.luks.devices."luks-f301b87d-798f-4896-98d0-561be1c6ceb6".device = "/dev/disk/by-uuid/f301b87d-798f-4896-98d0-561be1c6ceb6";
   networking.hostName = "nixos"; # Define your hostname.
@@ -75,7 +91,7 @@
   users.users.ariel = {
     isNormalUser = true;
     description = "ariel";
-    extraGroups = [ "networkmanager" "wheel" "plugdev" ];
+    extraGroups = [ "networkmanager" "wheel" "plugdev" "libvirtd" ];
     packages = with pkgs; [];
     shell = pkgs.zsh;
   };
@@ -126,7 +142,7 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
+  system.stateVersion = "25.05"; # Did you read the comment?
 
   # Display configuration
   environment.pathsToLink = [ "libexec" ];
@@ -155,7 +171,7 @@
   };
 
   # Enable sound with pipewire.
-  sound.enable = true;
+  #sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -187,7 +203,7 @@
     }
   ];
 };
-  
+
   boot.kernel.sysctl = {
   "fs.file-max" = 2097152;
   "net.ipv4.ip_local_port_range" = "1024 65535";
@@ -198,7 +214,6 @@
   "net.ipv4.tcp_fin_timeout" = 15;
 };
   networking.firewall.enable = true;
-  networking.firewall.allowedTCPPorts = [ 22 9002 9042 27017 28017];
+  networking.firewall.allowedTCPPorts = [ 22 80 443 3000 6333 6334 50051 50052 5432 6379 9000 9002 9042 27017 28017];
 
 }
-
